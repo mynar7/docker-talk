@@ -3,13 +3,17 @@ version: '3.6'
 services:
 
   node:
+    restart: always
     build:
       context: ./services/node
     volumes:
       - './services/node:/usr/src/app'
       - '/usr/src/app/node_modules'
+    depends_on:
+      - mysql
 
   nginx:
+    restart: always
     build:
       context: ./services/frontend
     volumes:
@@ -18,3 +22,18 @@ services:
      - 8080:80
     depends_on:
       - node
+
+  mysql:
+    image: mysql:5.7
+    # command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: banana
+      MYSQL_USER: test
+      MYSQL_PASSWORD: pass
+      MYSQL_ROOT_HOST: "%"
+      MYSQL_DATABASE: my_db
+    volumes:
+      - './services/db/schema:/docker-entrypoint-initdb.d'
+# this will persist data to disk:
+      # - './services/db/data:/var/lib/mysql'

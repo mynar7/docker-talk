@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Docker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="style.css">
 
 </head>
 
@@ -20,9 +21,27 @@
         <div class="row">
             <div class="col s12 m6 l8 offset-l2 offset-m3">
                 <h3 id="result">
-                    Magic happens here
+                    Magic happens here!
                 </h3>
-                <button class="btn waves-effect purple darken-4 pulse" id="$$$">Click me</button>
+                <button class="btn waves-effect purple darken-4 pulse" id="money">Click me</button>
+                <button class="btn waves-effect purple darken-4 pulse" id="moreMoney">Now Click me</button>
+                <table class="striped" id="resultTable">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Name</th>
+                            <th>Coolness Level</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+                <form>
+                    <label for="coolName">Name</label>
+                    <input type="text" name="coolName" id="coolName">
+                    <label for="coolLevel">Coolness Level</label>
+                    <input type="number" name="coolLevel"" max="999" min="0" id="coolLevel">
+                    <button class="btn waves-effect purple darken-4 pulse" type="submit">Submit</button>
+                </form>
             </div>
         </div>
     </div>
