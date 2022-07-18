@@ -24,15 +24,19 @@ services:
       - node
 
   mysql:
-    image: mysql:5.7
-    # command: --default-authentication-plugin=mysql_native_password
+    image: mysql:8
+    # Allows version 8+ to run with username/pass for auth
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: banana
-      MYSQL_USER: test
-      MYSQL_PASSWORD: pass
-      MYSQL_ROOT_HOST: "%"
+      # Options for MySQL setup. This config creates a db with no password for the root user
+      # MYSQL_ROOT_PASSWORD: banana
+      # MYSQL_USER: root
+      # MYSQL_PASSWORD: pass
+      # MYSQL_ROOT_HOST: "%"
+      MYSQL_ALLOW_EMPTY_PASSWORD: value
       MYSQL_DATABASE: my_db
+    # This places our schema file inside the container and runs the schema file when the db starts
     volumes:
       - './services/db/schema:/docker-entrypoint-initdb.d'
 # this will persist data to disk:
